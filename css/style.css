@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* header */
+
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(-30deg, #2E9AFF, #F498AD);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.nav {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-item {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+.sign-as-doctor-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(174, 0, 255);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* ////// */
+
+/* sign as doctor */
+
+.sign-as-doctor-cont {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.575);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.doctor-auth-cont {
+    max-width: 350px;
+    width: 100%;
+    height: 250px;
+    background-color: rgb(174, 0, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.doctor-auth-inp {
+    border: none;
+    outline: none;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+}
+
+.doctor-auth-btn {
+    padding: 10px 15px;
+    border: none;
+    color: rgb(100, 0, 146);
+    background-color: white;
+    font-weight: 500;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* ////// */
+
+/* main */
+
+main {
+    flex: 1 0 auto;
+    background-image: linear-gradient(0.25turn, #2E9AFF, #FFD829);
+
+}
+
+/* ////// */
+
+/* wrapper */
+
+.wrapper {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ////// */
+
+/* appointment */
+
+.appointment-cont {
+    max-width: 800px;
+    width: 100%;
+    height: 450px;
+    background-color: rgb(174, 0, 255);
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.appointment-select {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 500px;
+    width: 100%;
+    height: 350px;
+    padding: 0px 10px;
+}
+
+.appointment-title {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.health-complaints {
+    resize: none;
+    outline: none;
+    border: none;
+    padding: 10px;
+}
+
+.name-and-surname {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-and-surname-item {
+    max-width: 200px;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+}
+
+.name-inp {
+    margin-right: 10px;
+}
+
+.user-address {
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+}
+
+.select-doctor-title {
+    margin-top: 10px;
+    color: white;
+}
+
+.select-doctor {
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+}
+
+.make-appointment-btn {
+    margin-top: 20px;
+    align-self: center;
+    padding: 10px 20px;
+    border: none;
+    background-color: white;
+    color: rgb(100, 0, 146);
+    border-radius:  20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* ////// */
+
+/* footer */
+
+footer {
+    background-image: linear-gradient(-30deg, #2E9AFF, #F498AD);
+}
+
+/* ////// */
