@@ -184,8 +184,3 @@ doctorAuthBtn.onclick = async function(e) {
         showListOfApplications(doctorLogin.value);
     }
 }
-
-set(ref(db, "doctors/danchik"), {
-    username: 'danchik',
-    password: 'danchik'
-})
