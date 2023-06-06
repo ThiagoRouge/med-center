@@ -258,6 +258,11 @@ main {
     color: rgb(100, 0, 146);
 }
 
+.applications-for-doctors {
+    max-width: 800px;
+    width: 100%;
+}
+
 .application-item {
     display: flex;
     flex-direction: column;
