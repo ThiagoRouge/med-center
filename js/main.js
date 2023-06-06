@@ -3,21 +3,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebas
 import { getDatabase, ref, set, child, update, remove, onValue, get, push } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
 const firebaseConfig = {
-
-  apiKey: "AIzaSyAfOoHp9mqw8rr0blaUcnIR3hQZI8JzAOw",
-
-  authDomain: "med-center-67e0e.firebaseapp.com",
-
-  databaseURL: "https://med-center-67e0e-default-rtdb.firebaseio.com",
-
-  projectId: "med-center-67e0e",
-
-  storageBucket: "med-center-67e0e.appspot.com",
-
-  messagingSenderId: "192967316779",
-
-  appId: "1:192967316779:web:969b13871db080ba1b216e"
-
+    apiKey: "AIzaSyDn6uyQDwQNXtKQdOe0YqwZoQHTiMAI2-k",
+    authDomain: "med-center-65eaf.firebaseapp.com",
+    databaseURL: "https://med-center-65eaf-default-rtdb.firebaseio.com",
+    projectId: "med-center-65eaf",
+    storageBucket: "med-center-65eaf.appspot.com",
+    messagingSenderId: "902696139474",
+    appId: "1:902696139474:web:faca781b678748b20fcb0b"
 };
 
 initializeApp(firebaseConfig);
