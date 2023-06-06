@@ -32,18 +32,7 @@ const doctorAuthCont = document.querySelector('.doctor-auth-cont');
 const doctorAuthItems = document.querySelectorAll('.doctor-auth-item');
 const doctorLogin = document.querySelector('.doctor-login');
 const doctorPass = document.querySelector('.doctor-password');
-
-// site onload sys
-
-window.onload = async function() {
-    let currentDoctor = JSON.parse(localStorage.getItem('currentDoctor') || null);
-
-    if(currentDoctor != null && await authDoctor(currentDoctor.doctorUsername, currentDoctor.doctorPassword)) {
-        showListOfApplications();
-    }
-}
-
-// --------------------
+const logOut = document.querySelector('.log-out');
 
 // appointment
 
@@ -55,17 +44,47 @@ const healthComplaints = document.querySelector('.health-complaints');
 const userAddress = document.querySelector('.user-address');
 const selectDoctor = document.querySelector('.select-doctor');
 const applicationsContForDoctor = document.querySelector('.applications-cont-for-doctor');
+const applicationsForDoctors = document.querySelector('.applications-for-doctors');
 
 makeAppointmentBtn.onclick = async function(e) {
     e.preventDefault();
     if(nameInp.value.length != 0 && surnameInp.value.length != 0 && healthComplaints.value.length > 6 && userAddress.value.length > 6) {
-        push(ref(db, "appointments"), {
+        e.target.disabled = true;
+        await push(ref(db, "appointments"), {
             name: nameInp.value,
             surname: surnameInp.value,
             healthComplaints: healthComplaints.value,
             userAddress: userAddress.value,
             selectedDoctor: selectDoctor.value
         });
+        e.target.disabled = false;
+        const succesfulSendingAnAppCont = document.createElement('div');
+        const succesfulSendingAnAppText = document.createElement('h1');
+        succesfulSendingAnAppText.innerHTML = 'Успешно отправлено!';
+        succesfulSendingAnAppCont.setAttribute('class', 'succesful-sending-an-app-cont');
+        succesfulSendingAnAppText.setAttribute('class', 'succesful-sending-an-app-text');
+        succesfulSendingAnAppCont.appendChild(succesfulSendingAnAppText);
+        document.body.appendChild(succesfulSendingAnAppCont);
+        succesfulSendingAnAppCont.onclick = function(e) {
+            e.target.remove();
+        }
+    }
+}
+
+// --------------------
+
+// site onload sys
+
+window.onload = async function() {
+    let currentDoctor = JSON.parse(localStorage.getItem('currentDoctor') || null);
+
+    if(currentDoctor != null && await authDoctor(currentDoctor.doctorUsername, currentDoctor.doctorPassword)) {
+        logOut.style.display = 'flex';
+        showListOfApplications(currentDoctor.doctorUsername);
+    }
+    else {
+        signAsDoctorBtn.style.display = 'flex';
+        appointmentCont.style.display = 'flex';
     }
 }
 
@@ -97,13 +116,40 @@ function authDoctor(username, password) {
     })
 }
 
-function showListOfApplications() {
+// --------------------
+
+function showListOfApplications(doctorLogin) {
     appointmentCont.style.display = 'none';
     applicationsContForDoctor.style.display = 'flex';
-    get(ref(db, "appointments/")).then((snap) => {
+    onValue(ref(db, "appointments/"), (snap) => {
+        applicationsForDoctors.innerHTML = '';
         for(let appItem in snap.val()) {
             let objectOfApp = snap.val()[appItem];
-            
+            if(objectOfApp.selectedDoctor === doctorLogin) {
+                const applicationItem = document.createElement('div');
+                const appNameOfUser = document.createElement('h2');
+                const appSurnameOfUser = document.createElement('h2');
+                const appAddressOfUser = document.createElement('h2');
+                const healthComplaintsOfUser = document.createElement('p');
+                const deleteAppBtn = document.createElement('button');
+                deleteAppBtn.onclick = function() {
+                    remove(ref(db, 'appointments/' + appItem));
+                }
+                deleteAppBtn.innerHTML = 'Удалить запись';
+                appNameOfUser.innerHTML = 'Имя: ' + objectOfApp.name;
+                appSurnameOfUser.innerHTML = 'Фамилия: ' + objectOfApp.surname;
+                appAddressOfUser.innerHTML = 'Адресс: ' + objectOfApp.userAddress;
+                healthComplaintsOfUser.innerHTML = 'Жалобы: ' + objectOfApp.healthComplaints;
+                healthComplaintsOfUser.setAttribute('class', 'health-complaints-for-user');
+                applicationItem.setAttribute('class', 'application-item');
+                deleteAppBtn.setAttribute('class', 'delete-app-btn');
+                applicationItem.appendChild(appNameOfUser);
+                applicationItem.appendChild(appSurnameOfUser);
+                applicationItem.appendChild(appAddressOfUser);
+                applicationItem.appendChild(healthComplaintsOfUser);
+                applicationItem.appendChild(deleteAppBtn);
+                applicationsForDoctors.appendChild(applicationItem);
+            }
         }
     })
 }
@@ -115,13 +161,26 @@ function addDoctorToLocalStorage(username, password) {
     }))
 }
 
+// log out
+
+logOut.onclick = function(e) {
+    localStorage.removeItem('currentDoctor');
+    e.target.style.display = 'none';
+    signAsDoctorBtn.style.display = 'flex';
+    location.reload();
+}
+
+// --------------------
+
 doctorAuthBtn.onclick = async function(e) {
     e.preventDefault();
     e.target.disabled = true;
     if(await authDoctor(doctorLogin.value, doctorPass.value)) {
         addDoctorToLocalStorage(doctorLogin.value, doctorPass.value);
         e.target.disabled = false;
+        signAsDoctorBtn.style.display = 'none';
+        logOut.style.display = 'flex';
         signAsDoctorCont.style.display = 'none';
-        showListOfApplications();
+        showListOfApplications(doctorLogin.value);
     }
 }

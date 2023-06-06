@@ -57,6 +57,18 @@ header {
     color: white;
     font-weight: 500;
     cursor: pointer;
+    display: none;
+}
+
+.log-out {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(174, 0, 255);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    display: none;
 }
 
 /* ////// */
@@ -136,7 +148,7 @@ main {
     margin: 0 auto;
     margin-top: 20px;
     border-radius: 20px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -210,6 +222,23 @@ main {
     cursor: pointer;
 }
 
+.health-complaints-for-user {
+    margin-top: 20px;
+    overflow-wrap: break-word;
+}
+
+.delete-app-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    align-self: center;
+    cursor: pointer;
+    background-color: white;
+    font-weight: 500;
+    color: rgb(100, 0, 146);
+}
+
 /* ////// */
 
 /* applications */
@@ -230,11 +259,37 @@ main {
 }
 
 .application-item {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
     margin-top: 20px;
     background-color: rgb(100, 0, 146);
     color: white;
     padding: 10px;
     border-radius: 10px;
+}
+
+
+
+/* ////// */
+
+/* succesful sending an app */
+
+.succesful-sending-an-app-cont {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(102, 102, 102, 0.514);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.succesful-sending-an-app-text {
+    font-weight: 500;
+    color: white;
 }
 
 /* ////// */
