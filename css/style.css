@@ -24,7 +24,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(-30deg, #2E9AFF, #F498AD);
+    background-color: rgb(99, 99, 255);
+
 }
 
 .header-inner {
@@ -33,6 +34,7 @@ header {
     align-items: center;
     max-width: 1000px;
     width: 100%;
+    padding: 10px;
 }
 
 .nav {
@@ -53,7 +55,7 @@ header {
     padding: 10px 20px;
     border: none;
     border-radius: 20px;
-    background-color: rgb(174, 0, 255);
+    background: rgb(0, 0, 155);
     color: white;
     font-weight: 500;
     cursor: pointer;
@@ -64,7 +66,7 @@ header {
     padding: 10px 20px;
     border: none;
     border-radius: 20px;
-    background-color: rgb(174, 0, 255);
+    background: rgb(0, 0, 155);
     color: white;
     font-weight: 500;
     cursor: pointer;
@@ -91,7 +93,7 @@ header {
     max-width: 350px;
     width: 100%;
     height: 250px;
-    background-color: rgb(174, 0, 255);
+    background: rgb(0, 0, 155);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,7 +111,7 @@ header {
 .doctor-auth-btn {
     padding: 10px 15px;
     border: none;
-    color: rgb(100, 0, 146);
+    color: rgb(0, 0, 155);
     background-color: white;
     font-weight: 500;
     border-radius: 20px;
@@ -122,8 +124,7 @@ header {
 
 main {
     flex: 1 0 auto;
-    background-image: linear-gradient(0.25turn, #2E9AFF, #FFD829);
-
+    background: white;   
 }
 
 /* ////// */
@@ -143,8 +144,8 @@ main {
 .appointment-cont {
     max-width: 800px;
     width: 100%;
-    height: 500px;
-    background-color: rgb(174, 0, 255);
+    height: 550px;
+    background-color: rgb(99, 99, 255);
     margin: 0 auto;
     margin-top: 20px;
     border-radius: 20px;
@@ -160,7 +161,7 @@ main {
     justify-content: space-between;
     max-width: 500px;
     width: 100%;
-    height: 400px;
+    height: 450px;
     padding: 0px 10px;
 }
 
@@ -204,6 +205,12 @@ main {
     color: white;
 }
 
+.date-of-birth {
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+}
+
 .select-doctor {
     padding: 5px 10px;
     outline: none;
@@ -215,8 +222,8 @@ main {
     align-self: center;
     padding: 10px 20px;
     border: none;
-    background-color: white;
-    color: rgb(100, 0, 146);
+    background: rgb(0, 0, 155);
+    color: white;
     border-radius:  20px;
     font-weight: 500;
     cursor: pointer;
@@ -236,7 +243,7 @@ main {
     cursor: pointer;
     background-color: white;
     font-weight: 500;
-    color: rgb(100, 0, 146);
+    color: rgb(0, 0, 155);
 }
 
 /* ////// */
@@ -255,7 +262,7 @@ main {
 }
 
 .applications-for-doctors-title {
-    color: rgb(100, 0, 146);
+    color: rgb(0, 0, 155);
 }
 
 .applications-for-doctors {
@@ -268,7 +275,7 @@ main {
     flex-direction: column;
     flex-shrink: 1;
     margin-top: 20px;
-    background-color: rgb(100, 0, 146);
+    background: rgb(0, 0, 155);
     color: white;
     padding: 10px;
     border-radius: 10px;

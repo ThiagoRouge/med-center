@@ -14,7 +14,6 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-const storage = getStorage();
 const db = getDatabase();
 
 const doctorAuthBtn = document.querySelector('.doctor-auth-btn');
@@ -37,6 +36,7 @@ const userAddress = document.querySelector('.user-address');
 const selectDoctor = document.querySelector('.select-doctor');
 const applicationsContForDoctor = document.querySelector('.applications-cont-for-doctor');
 const applicationsForDoctors = document.querySelector('.applications-for-doctors');
+const dateOfBirth = document.querySelector('.date-of-birth');
 
 makeAppointmentBtn.onclick = async function(e) {
     e.preventDefault();
@@ -47,6 +47,7 @@ makeAppointmentBtn.onclick = async function(e) {
             surname: surnameInp.value,
             healthComplaints: healthComplaints.value,
             userAddress: userAddress.value,
+            dateOfBirth: dateOfBirth.value.split('-').reverse().join('/'),
             selectedDoctor: selectDoctor.value
         });
         e.target.disabled = false;
@@ -122,6 +123,7 @@ function showListOfApplications(doctorLogin) {
                 const appNameOfUser = document.createElement('h2');
                 const appSurnameOfUser = document.createElement('h2');
                 const appAddressOfUser = document.createElement('h2');
+                const dateOfBirthOfUser = document.createElement('h2');
                 const healthComplaintsOfUser = document.createElement('p');
                 const deleteAppBtn = document.createElement('button');
                 deleteAppBtn.onclick = function() {
@@ -132,12 +134,15 @@ function showListOfApplications(doctorLogin) {
                 appSurnameOfUser.innerHTML = 'Фамилия: ' + objectOfApp.surname;
                 appAddressOfUser.innerHTML = 'Адресс: ' + objectOfApp.userAddress;
                 healthComplaintsOfUser.innerHTML = 'Жалобы: ' + objectOfApp.healthComplaints;
+                dateOfBirthOfUser.innerHTML = 'Дата рождения: ' + objectOfApp.dateOfBirth;
                 healthComplaintsOfUser.setAttribute('class', 'health-complaints-for-user');
                 applicationItem.setAttribute('class', 'application-item');
                 deleteAppBtn.setAttribute('class', 'delete-app-btn');
+                dateOfBirthOfUser.setAttribute('class', 'date-of-birth-of-user');
                 applicationItem.appendChild(appNameOfUser);
                 applicationItem.appendChild(appSurnameOfUser);
                 applicationItem.appendChild(appAddressOfUser);
+                applicationItem.appendChild(dateOfBirthOfUser);
                 applicationItem.appendChild(healthComplaintsOfUser);
                 applicationItem.appendChild(deleteAppBtn);
                 applicationsForDoctors.appendChild(applicationItem);
