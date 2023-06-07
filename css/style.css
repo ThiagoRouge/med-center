@@ -32,23 +32,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1000px;
+    max-width: 1300px;
     width: 100%;
     padding: 10px;
-}
-
-.nav {
-    max-width: 500px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.nav-item {
-    text-transform: uppercase;
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
 }
 
 .sign-as-doctor-btn {
@@ -125,16 +111,6 @@ header {
 main {
     flex: 1 0 auto;
     background: white;   
-}
-
-/* ////// */
-
-/* wrapper */
-
-.wrapper {
-    max-width: 1000px;
-    width: 100%;
-    margin: 0 auto;
 }
 
 /* ////// */
@@ -281,8 +257,6 @@ main {
     border-radius: 10px;
 }
 
-
-
 /* ////// */
 
 /* succesful sending an app */
@@ -306,10 +280,238 @@ main {
 
 /* ////// */
 
+.look-calendar {
+    width:220px;
+    border:1px solid #c0c0c0;
+    padding:6px;
+    margin: 0 auto;    
+}
+
+#calendar {
+    width: 100%;
+    line-height: 1.2em;
+    font-size: 15px;
+    text-align: center;
+    border-spacing:0px;
+}
+
+#calendar tr.dn td {
+    font-size: 15px;
+}
+
+#calendar thead tr:last-child {
+    font-size: small;
+    color: #555555;
+}
+
+#calendar thead tr:nth-child(1) td:nth-child(2) {
+    color: #323232;
+}
+
+#calendar thead tr:nth-child(1) td:nth-child(1):hover,
+#calendar thead tr:nth-child(1) td:nth-child(3):hover {
+    cursor: pointer;
+}
+
+#calendar tbody td {
+    color: #2c567a;
+}
+
+#calendar tbody td:nth-child(n+6),
+#calendar .holiday {
+    color: #e78c5c;
+}
+
+#calendar tbody td.today {
+    background: #dc0000;
+    color: #fff;
+}
+
+/* about us */
+
+.main-item {
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.main-item-title {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid;
+}
+
+.gov-sym-item {
+    text-decoration: none;
+    color: white;
+}
+
+.other-res-item {
+    text-decoration: none;
+    color: white;
+}
+
+.about-us-cont {
+    flex: 1 1 auto;
+}
+
+.about-us-detail {
+    overflow-wrap: break-word;
+}
+
+/* ////// */
+
+/* sec-header */
+
+.sec-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.sec-header-left-side-img {
+    margin-right: 10px;
+}
+
+.sec-header-left-side {
+    display: flex;
+    align-items: center;
+}
+
+/* ////// */
+
+/* third header */
+
+.third-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.third-header-nav {
+    background-color: rgb(99, 99, 255);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.third-header-nav-item {
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    border-right: 2px solid;
+}
+
+.third-header-img {
+    background-image: url('../images/third-header-img.jpg');
+    width: 100%;
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* ////// */
+
+/* wrapper */
+
+.wrapper {
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* ////// */
+
+.cart-of-med-center {
+    max-width: 300px;
+    width: 100%;
+}
+
+/* wrapper left side */
+
+.wrapper-left-side {
+    max-width: 800px;
+    width: 100%;
+    flex: 1 1 auto;
+    margin-bottom: 20px;
+}
+
+/* ////// */
+
+/* wrapper right side */
+
+.wrapper-right-side {
+    max-width: 300px;
+    width: 100%;
+    padding: 10px;
+}
+
+/* ////// */
+
 /* footer */
 
 footer {
-    background-image: linear-gradient(-30deg, #2E9AFF, #F498AD);
+    background-color: rgb(99, 99, 255);
 }
 
+.about-site-block {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 2px solid white;
+    margin-bottom: 10px;
+}
+
+.rights-reserved {
+    color: white;
+}
+
+/* ////// */
+
+/* last news */
+
+.last-news-text {
+    display: flex;
+    align-items: center;
+}
+
+.last-news-title {
+    margin-right: 20px;
+}
+
+.last-news-btn {
+    text-decoration: none;
+    background-color: rgb(99, 99, 255);
+    color: white;
+    padding: 5px 10px;
+}
+
+.last-news-img {
+    width: 100%;
+}
+
+/* chief physician blog*/
+
+.blog-chief-physician {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: rgb(99, 99, 255);
+    border-radius: 10px;
+}
+
+.blog-chief-physician-href {
+    color: white;
+    text-decoration: none;
+}
 /* ////// */

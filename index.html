@@ -13,12 +13,6 @@
             <div class="logo">
                 <img src="images/logo.png" alt="" class="logo-img" height="80" width="80">
             </div>
-
-            <div class="nav">
-                <a href="#" class="nav-item">Записаться на прием</a>
-                <a href="#" class="nav-item">О нас</a>
-                <a href="#" class="nav-item">Наши контакты</a>
-            </div>
             <button class="sign-as-doctor-btn">Войти как врач</button>
             <button class="log-out">Выйти</button>
         </div>
@@ -32,36 +26,113 @@
     </div>
     <main>
         <div class="wrapper">
-            <div class="appointment-cont">
-                <h1 class="appointment-title">Запись на прием</h1>
-                <form action="" class="appointment-select">
-                    <div class="name-and-surname">
-                        <input type="text" placeholder="Имя" class="name-inp name-and-surname-item">
-                        <input type="text" placeholder="Фамилия" class="surname-inp name-and-surname-item">
-                    </div>
-                    <textarea name="complaints" id="" cols="30" rows="10" placeholder="Жалобы" class="health-complaints"></textarea>
-                    <input type="text" placeholder="Ваш адресс" class="user-address">
-                    <input id="dateOfBirth" type="date" class="date-of-birth" value="2000-01-01" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                    <p class="select-doctor-title">Выберите врача:</p>
-                    <select name="doctor" class="select-doctor">
-                        <option value="azatazat">Куан А.Б.</option>
-                        <option value="danchik">Мулдашев Д.Б.</option>
-                        <option value="igorevna">Игоревна М.В.</option>
-                    </select>
-                    <button class="make-appointment-btn">Записаться</button>
-                </form>
+            <div class="sec-header">
+                <div class="sec-header-left-side">
+                    <img class="sec-header-left-side-img" src="images/emblem.png" alt="" height="100" width="100">
+                    <h3 class="sec-header-left-side-text">ГКП "Городская поликлиника №3" на ПХВ<br> Оффициальный сайт учреждения</h3>
+                </div>
+
+                <iframe class="cart-of-med-center" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.3723452070626!2d51.36831477700825!3d51.212216132224086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4171bb059df7f211%3A0x171cc0cf4c4520e8!2z0J_QvtC70LjQutC70LjQvdC40LrQsCAzINCi0LDQu9Cw0L8!5e0!3m2!1sru!2skz!4v1686169083396!5m2!1sru!2skz" max-width="300" height="80" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                
+                <div class="sec-header-call-center">
+                    Call-центр: <br>
+                    8 (7132) 94-17-57 <br>
+                    <a href="" class="all-numbers">Все телефоны</a>
+                </div>
             </div>
-            
-            <div class="applications-cont-for-doctor">
-                <h1 class="applications-for-doctors-title">Записи на ваш прием</h1>
-                <div class="applications-for-doctors">
+
+            <div class="third-header">
+                <div class="third-header-nav">
+                    <a href="https://drive.google.com/open?id=1HjcFJJvupSBSievF9kKlGf0zKRmJK9TW" class="third-header-nav-item">О ПОЛИКЛИНИКЕ</a>
+                    <a href="https://drive.google.com/drive/folders/1yjW6F51Y6CQDktuuxiGAAzi5LQi1w7Hu?usp=sharing" class="third-header-nav-item">ГОС. УСЛУГИ</a>
+                    <a href="https://drive.google.com/drive/folders/1__rUPI_kd3IoiLs1tSAjwxSSVd84i1_m" class="third-header-nav-item">ГРАФИК РАБОТЫ</a>
+                    <a href="https://drive.google.com/drive/folders/1nqXAaSZujhxoU8ZTZqbMUBZJtNBoJ0fc?usp=sharing" class="third-header-nav-item">ПАЦИЕНТАМ</a>
+                    <a href="http://pol3-aktobe.kz/goszakup/" class="third-header-nav-item">ГОС. ЗАКУПКИ</a>
+                </div>
+                <div class="third-header-img">
+
+                </div>
+            </div>
+
+            <div class="wrapper-left-side">
+                <h2 class="qoute-of-site">«Наша приоритетная задача - Профессиональная забота о Вашем здоровье!»</h2>
+                <div class="last-news-cont">
+                    <div class="last-news-text">
+                        <h2 class="last-news-title">Последние новости</h2>
+                        <a href="#" class="last-news-btn">Все новости ></a>
+                    </div>
+                    <img src="images/last-news-img.jpg" alt="" class="last-news-img">
+                </div>
+                <div class="appointment-cont">
+                    <h1 class="appointment-title">Запись на прием</h1>
+                    <form action="" class="appointment-select">
+                        <div class="name-and-surname">
+                            <input type="text" placeholder="Имя" class="name-inp name-and-surname-item">
+                            <input type="text" placeholder="Фамилия" class="surname-inp name-and-surname-item">
+                        </div>
+                        <textarea name="complaints" id="" cols="30" rows="10" placeholder="Жалобы" class="health-complaints"></textarea>
+                        <input type="text" placeholder="Ваш адресс" class="user-address">
+                        <input id="dateOfBirth" type="date" class="date-of-birth" value="2000-01-01" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                        <p class="select-doctor-title">Выберите врача:</p>
+                        <select name="doctor" class="select-doctor">
+                            <option value="azatazat">Куан А.Б.</option>
+                            <option value="danchik">Мулдашев Д.Б.</option>
+                            <option value="igorevna">Игоревна М.В.</option>
+                        </select>
+                        <button class="make-appointment-btn">Записаться</button>
+                    </form>
+                </div>
+                <div class="applications-cont-for-doctor">
+                    <h1 class="applications-for-doctors-title">Записи на ваш прием</h1>
+                    <div class="applications-for-doctors">
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-right-side">
+                <a href="http://pol3-aktobe.kz/38-blog-glavnogo-vracha.html" class="blog-chief-physician-href"><div class="blog-chief-physician">Блог главного врача</div></a>
+                <div class="look-calendar">
+                    <table id="calendar">
+                    <thead>
+                    <tr>
+                    <td><b>‹</b>
+                    <td colspan="5">
+                    <td><b>›</b>
+                    <tr class="dn"><td>Пн<td>Вт<td>Ср<td>Чт<td>Пт<td>Сб<td>Вс
+                    </thead>
+                    <tbody></tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </main>
     <footer>
         <div class="footer-inner">
-            
+            <div class="about-site-block">
+                <div class="about-us-cont main-item">
+                    <h2 class="about-us-title main-item-title">О нас</h2>
+                    <p class="about-us-detail">
+                        ГКП "Городская поликлиника №3"
+                        030000, Республика Казахстан, Актюбинская область,<br>
+                        город Актобе, 12 микрорайон 51"Д".<br>
+                        ГКП «Городская поликлиника №3» на ПХВ
+                    </p>
+                </div>
+
+                <div class="gov-sym-cont main-item">
+                    <h2 class="gov-sym-title main-item-title">Гос. Символы</h2>
+                    <a href="http://pol3-aktobe.kz/97-gosudarstvennyy-flag-respubliki-kazahstan.html" class="FlagRepublicofKazakhstan gov-sym-item">Флаг Республики Казахстан</a>
+                    <a href="http://pol3-aktobe.kz/98-gosudarstvennyy-gerb-respubliki-kazahstan.html" class="CoatRepublicofKazakhstan gov-sym-item">Герб Республики Казахстан</a>
+                    <a href="http://pol3-aktobe.kz/99-gosudarstvennyy-gimn-respubliki-kazahstan.html" class="AnthemRepublicofKazakhstan gov-sym-item">Гимн Республики Казахстан</a>
+                </div>
+
+                <div class="other-res-cont main-item">
+                    <h2 class="other-res-title main-item-title">Другие ресурсы</h2>
+                    <a href="https://www.akorda.kz/ru" class="other-res-item">Официальный сайт Президента Республики Казахстан</a>
+                    <a href="https://expo2017astana.com/" class="other-res-item">«Астана ЭКСПО-2017»</a>
+                </div>
+            </div>
+            <p class="rights-reserved">© 2017, Управление здравоохранения Актюбинской области
+                Все права защищены</p>
         </div>
     </footer>
     <script type="module" src="js/main.js"></script>
