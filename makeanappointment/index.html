@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
 </head>
 <body>
     <header>
         <div class="header-inner">
             <div class="logo">
-                <img src="images/logo.png" alt="" class="logo-img" height="80" width="80">
+                <img src="../images/logo.png" alt="" class="logo-img" height="80" width="80">
             </div>
             <button class="sign-as-doctor-btn">Войти как врач</button>
             <button class="log-out">Выйти</button>
@@ -28,7 +28,7 @@
         <div class="wrapper">
             <div class="sec-header">
                 <div class="sec-header-left-side">
-                    <img class="sec-header-left-side-img" src="images/emblem.png" alt="" height="100" width="100">
+                    <img class="sec-header-left-side-img" src="../images/emblem.png" alt="" height="100" width="100">
                     <h3 class="sec-header-left-side-text">ГКП "Городская поликлиника №3" на ПХВ<br> Оффициальный сайт учреждения</h3>
                 </div>
 
@@ -51,19 +51,27 @@
                     <a href="http://pol3-aktobe.kz/goszakup/" class="third-header-nav-item">ГОС. ЗАКУПКИ</a>
                     <a href="/makeanappointment/index.html" class="third-header-nav-item">ЗАПИСАТЬСЯ НА ПРИЕМ</a>
                 </div>
-                <div class="third-header-img">
-
-                </div>
             </div>
 
             <div class="wrapper-left-side">
-                <h2 class="qoute-of-site">«Наша приоритетная задача - Профессиональная забота о Вашем здоровье!»</h2>
-                <div class="last-news-cont">
-                    <div class="last-news-text">
-                        <h2 class="last-news-title">Последние новости</h2>
-                        <a href="#" class="last-news-btn">Все новости ></a>
-                    </div>
-                    <img src="images/last-news-img.jpg" alt="" class="last-news-img">
+                <div class="appointment-cont">
+                    <h1 class="appointment-title">Запись на прием</h1>
+                    <form action="" class="appointment-select">
+                        <div class="name-and-surname">
+                            <input type="text" placeholder="Имя" class="name-inp name-and-surname-item">
+                            <input type="text" placeholder="Фамилия" class="surname-inp name-and-surname-item">
+                        </div>
+                        <textarea name="complaints" id="" cols="30" rows="10" placeholder="Жалобы" class="health-complaints"></textarea>
+                        <input type="text" placeholder="Ваш адресс" class="user-address">
+                        <input id="dateOfBirth" type="date" class="date-of-birth" value="2000-01-01" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                        <p class="select-doctor-title">Выберите врача:</p>
+                        <select name="doctor" class="select-doctor">
+                            <option value="azatazat">Куан А.Б.</option>
+                            <option value="danchik">Мулдашев Д.Б.</option>
+                            <option value="igorevna">Игоревна М.В.</option>
+                        </select>
+                        <button class="make-appointment-btn">Записаться</button>
+                    </form>
                 </div>
             </div>
             <div class="wrapper-right-side">
@@ -113,6 +121,6 @@
                 Все права защищены</p>
         </div>
     </footer>
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="../js/makeanappointment.js"></script>
 </body>
 </html>

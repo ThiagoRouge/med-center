@@ -67,6 +67,8 @@ function authDoctor(username, password) {
     })
 }
 
+// --------------------
+
 function addDoctorToLocalStorage(username, password) {
     localStorage.setItem('currentDoctor', JSON.stringify({
         doctorUsername: username,
@@ -84,8 +86,6 @@ logOut.onclick = function(e) {
     location.reload();
 }
 
-// --------------------
-
 function showDoctorPanel() {
     let linkToDoctorPanel = document.createElement('a');
     linkToDoctorPanel.setAttribute('class', 'third-header-nav-item doctor-panel');
@@ -93,6 +93,8 @@ function showDoctorPanel() {
     linkToDoctorPanel.href = '/doctorpanel/index.html';
     thirdHeaderNav.appendChild(linkToDoctorPanel);
 }
+
+// --------------------
 
 doctorAuthBtn.onclick = async function(e) {
     e.preventDefault();

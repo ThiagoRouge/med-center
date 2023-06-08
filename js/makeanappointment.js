@@ -23,7 +23,45 @@ const doctorAuthItems = document.querySelectorAll('.doctor-auth-item');
 const doctorLogin = document.querySelector('.doctor-login');
 const doctorPass = document.querySelector('.doctor-password');
 const logOut = document.querySelector('.log-out');
+
+// appointment
+
+const makeAppointmentBtn = document.querySelector('.make-appointment-btn');
+const nameInp = document.querySelector('.name-inp');
+const surnameInp = document.querySelector('.surname-inp');
+const healthComplaints = document.querySelector('.health-complaints');
+const userAddress = document.querySelector('.user-address');
+const selectDoctor = document.querySelector('.select-doctor');
+const dateOfBirth = document.querySelector('.date-of-birth');
 const thirdHeaderNav = document.querySelector('.third-header-nav');
+
+makeAppointmentBtn.onclick = async function(e) {
+    e.preventDefault();
+    if(nameInp.value.length != 0 && surnameInp.value.length != 0 && healthComplaints.value.length > 6 && userAddress.value.length > 6) {
+        e.target.disabled = true;
+        await push(ref(db, "appointments"), {
+            name: nameInp.value,
+            surname: surnameInp.value,
+            healthComplaints: healthComplaints.value,
+            userAddress: userAddress.value,
+            dateOfBirth: dateOfBirth.value.split('-').reverse().join('/'),
+            selectedDoctor: selectDoctor.value
+        });
+        e.target.disabled = false;
+        const succesfulSendingAnAppCont = document.createElement('div');
+        const succesfulSendingAnAppText = document.createElement('h1');
+        succesfulSendingAnAppText.innerHTML = 'Успешно отправлено!';
+        succesfulSendingAnAppCont.setAttribute('class', 'succesful-sending-an-app-cont');
+        succesfulSendingAnAppText.setAttribute('class', 'succesful-sending-an-app-text');
+        succesfulSendingAnAppCont.appendChild(succesfulSendingAnAppText);
+        document.body.appendChild(succesfulSendingAnAppCont);
+        succesfulSendingAnAppCont.onclick = function(e) {
+            e.target.remove();
+        }
+    }
+}
+
+// --------------------
 
 // site onload sys
 
@@ -66,6 +104,8 @@ function authDoctor(username, password) {
         return false
     })
 }
+
+// --------------------
 
 function addDoctorToLocalStorage(username, password) {
     localStorage.setItem('currentDoctor', JSON.stringify({

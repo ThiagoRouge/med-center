@@ -16,23 +16,20 @@ initializeApp(firebaseConfig);
 
 const db = getDatabase();
 
-const doctorAuthBtn = document.querySelector('.doctor-auth-btn');
 const signAsDoctorBtn = document.querySelector('.sign-as-doctor-btn');
 const signAsDoctorCont = document.querySelector('.sign-as-doctor-cont');
 const doctorAuthItems = document.querySelectorAll('.doctor-auth-item');
-const doctorLogin = document.querySelector('.doctor-login');
-const doctorPass = document.querySelector('.doctor-password');
 const logOut = document.querySelector('.log-out');
-const thirdHeaderNav = document.querySelector('.third-header-nav');
+const applicationsContForDoctor = document.querySelector('.applications-cont-for-doctor');
+const applicationsForDoctors = document.querySelector('.applications-for-doctors');
 
 // site onload sys
 
 window.onload = async function() {
     let currentDoctor = JSON.parse(localStorage.getItem('currentDoctor') || null);
-
     if(currentDoctor != null && await authDoctor(currentDoctor.doctorUsername, currentDoctor.doctorPassword)) {
         logOut.style.display = 'flex';
-        showDoctorPanel();
+        showListOfApplications(currentDoctor.doctorUsername);
     }
     else {
         signAsDoctorBtn.style.display = 'flex';
@@ -67,11 +64,45 @@ function authDoctor(username, password) {
     })
 }
 
-function addDoctorToLocalStorage(username, password) {
-    localStorage.setItem('currentDoctor', JSON.stringify({
-        doctorUsername: username,
-        doctorPassword: password
-    }))
+// --------------------
+
+function showListOfApplications(doctorLogin) {
+    applicationsContForDoctor.style.display = 'flex';
+    onValue(ref(db, "appointments/"), (snap) => {
+        applicationsForDoctors.innerHTML = '';
+        for(let appItem in snap.val()) {
+            let objectOfApp = snap.val()[appItem];
+            if(objectOfApp.selectedDoctor === doctorLogin) {
+                const applicationItem = document.createElement('div');
+                const appNameOfUser = document.createElement('h2');
+                const appSurnameOfUser = document.createElement('h2');
+                const appAddressOfUser = document.createElement('h2');
+                const dateOfBirthOfUser = document.createElement('h2');
+                const healthComplaintsOfUser = document.createElement('p');
+                const deleteAppBtn = document.createElement('button');
+                deleteAppBtn.onclick = function() {
+                    remove(ref(db, 'appointments/' + appItem));
+                }
+                deleteAppBtn.innerHTML = 'Удалить запись';
+                appNameOfUser.innerHTML = 'Имя: ' + objectOfApp.name;
+                appSurnameOfUser.innerHTML = 'Фамилия: ' + objectOfApp.surname;
+                appAddressOfUser.innerHTML = 'Адресс: ' + objectOfApp.userAddress;
+                healthComplaintsOfUser.innerHTML = 'Жалобы: ' + objectOfApp.healthComplaints;
+                dateOfBirthOfUser.innerHTML = 'Дата рождения: ' + objectOfApp.dateOfBirth;
+                healthComplaintsOfUser.setAttribute('class', 'health-complaints-for-user');
+                applicationItem.setAttribute('class', 'application-item');
+                deleteAppBtn.setAttribute('class', 'delete-app-btn');
+                dateOfBirthOfUser.setAttribute('class', 'date-of-birth-of-user');
+                applicationItem.appendChild(appNameOfUser);
+                applicationItem.appendChild(appSurnameOfUser);
+                applicationItem.appendChild(appAddressOfUser);
+                applicationItem.appendChild(dateOfBirthOfUser);
+                applicationItem.appendChild(healthComplaintsOfUser);
+                applicationItem.appendChild(deleteAppBtn);
+                applicationsForDoctors.appendChild(applicationItem);
+            }
+        }
+    })
 }
 
 // log out
@@ -80,32 +111,10 @@ logOut.onclick = function(e) {
     localStorage.removeItem('currentDoctor');
     e.target.style.display = 'none';
     signAsDoctorBtn.style.display = 'flex';
-    document.querySelector('.doctor-panel').remove();
-    location.reload();
+    window.location.href = '/index.html';
 }
 
 // --------------------
-
-function showDoctorPanel() {
-    let linkToDoctorPanel = document.createElement('a');
-    linkToDoctorPanel.setAttribute('class', 'third-header-nav-item doctor-panel');
-    linkToDoctorPanel.innerHTML = 'ПАНЕЛЬ ВРАЧА';
-    linkToDoctorPanel.href = '/doctorpanel/index.html';
-    thirdHeaderNav.appendChild(linkToDoctorPanel);
-}
-
-doctorAuthBtn.onclick = async function(e) {
-    e.preventDefault();
-    e.target.disabled = true;
-    if(await authDoctor(doctorLogin.value, doctorPass.value)) {
-        addDoctorToLocalStorage(doctorLogin.value, doctorPass.value);
-        e.target.disabled = false;
-        signAsDoctorBtn.style.display = 'none';
-        logOut.style.display = 'flex';
-        signAsDoctorCont.style.display = 'none';
-        showDoctorPanel();
-    }
-}
 
 // calendar
 
