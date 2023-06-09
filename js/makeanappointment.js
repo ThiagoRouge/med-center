@@ -34,10 +34,12 @@ const userAddress = document.querySelector('.user-address');
 const selectDoctor = document.querySelector('.select-doctor');
 const dateOfBirth = document.querySelector('.date-of-birth');
 const thirdHeaderNav = document.querySelector('.third-header-nav');
+const availableTimes = document.querySelector('.available-times');
 
 makeAppointmentBtn.onclick = async function(e) {
     e.preventDefault();
-    if(nameInp.value.length != 0 && surnameInp.value.length != 0 && healthComplaints.value.length > 6 && userAddress.value.length > 6) {
+    const selectedTime = document.querySelector('input[name="times"]:checked');
+    if(nameInp.value.length != 0 && surnameInp.value.length != 0 && healthComplaints.value.length > 6 && userAddress.value.length > 6 && selectedTime != null) {
         e.target.disabled = true;
         await push(ref(db, "appointments"), {
             name: nameInp.value,
@@ -45,8 +47,11 @@ makeAppointmentBtn.onclick = async function(e) {
             healthComplaints: healthComplaints.value,
             userAddress: userAddress.value,
             dateOfBirth: dateOfBirth.value.split('-').reverse().join('/'),
-            selectedDoctor: selectDoctor.value
+            selectedDoctor: selectDoctor.value,
+            selectedTime: selectedTime.value,
+            closed: false
         });
+        await set(ref(db, 'availabletimes/' + selectedTime.value), false);
         e.target.disabled = false;
         const succesfulSendingAnAppCont = document.createElement('div');
         const succesfulSendingAnAppText = document.createElement('h1');
@@ -146,6 +151,55 @@ doctorAuthBtn.onclick = async function(e) {
         showDoctorPanel();
     }
 }
+
+function showAvailableTimes() {
+    onValue(ref(db, 'availabletimes/'), (snap) => {
+        availableTimes.innerHTML = '';
+        let arrayOfTimes = [];
+        for(let item in snap.val()) {
+            arrayOfTimes.push({
+                time: item,
+                availability: snap.val()[item]
+            })
+        }
+        let sortedArrayOfTimes = arrayOfTimes.sort(function(a, b) {
+            return Number(a.time.split(':').join('.')) - Number(b.time.split(':').join('.'));
+        })
+        for(let i = 0; i < sortedArrayOfTimes.length; i++) {
+            let availableTime = sortedArrayOfTimes[i];
+            let timeAvailability = availableTime.availability;
+            if(timeAvailability) {
+                let contForTimeRadio = document.createElement('div');
+                contForTimeRadio.setAttribute('class', 'cont-for-available-time');
+                let radioForTime = document.createElement('input');
+                radioForTime.setAttribute('id', 'time-' + i);
+                radioForTime.setAttribute('name', 'times');
+                radioForTime.type = 'radio';
+                radioForTime.value = availableTime.time;
+                let labelForTime = document.createElement('label');
+                labelForTime.setAttribute('for', 'time-' + i);
+                labelForTime.innerHTML = availableTime.time;
+                contForTimeRadio.appendChild(radioForTime);
+                contForTimeRadio.appendChild(labelForTime);
+                availableTimes.appendChild(contForTimeRadio);
+            }
+            else {
+                let contForTimeRadio = document.createElement('div');
+                contForTimeRadio.setAttribute('class', 'cont-for-available-time');
+                let radioForTime = document.createElement('input');
+                radioForTime.type = 'radio';
+                let labelForTime = document.createElement('label');
+                labelForTime.innerHTML = availableTime.time;
+                radioForTime.setAttribute('disabled', 'true');
+                contForTimeRadio.appendChild(radioForTime);
+                contForTimeRadio.appendChild(labelForTime);
+                availableTimes.appendChild(contForTimeRadio);
+            }
+        }
+    })
+}
+
+showAvailableTimes();
 
 // calendar
 

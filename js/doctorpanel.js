@@ -21,7 +21,8 @@ const signAsDoctorCont = document.querySelector('.sign-as-doctor-cont');
 const doctorAuthItems = document.querySelectorAll('.doctor-auth-item');
 const logOut = document.querySelector('.log-out');
 const applicationsContForDoctor = document.querySelector('.applications-cont-for-doctor');
-const applicationsForDoctors = document.querySelector('.applications-for-doctors');
+const applicationsForDoctorsActive = document.querySelector('.applications-for-doctors-active');
+const applicationsForDoctorsInActive = document.querySelector('.applications-for-doctors-inactive');
 
 // site onload sys
 
@@ -69,37 +70,72 @@ function authDoctor(username, password) {
 function showListOfApplications(doctorLogin) {
     applicationsContForDoctor.style.display = 'flex';
     onValue(ref(db, "appointments/"), (snap) => {
-        applicationsForDoctors.innerHTML = '';
+        applicationsForDoctorsActive.innerHTML = '';
+        applicationsForDoctorsInActive.innerHTML = '';
         for(let appItem in snap.val()) {
             let objectOfApp = snap.val()[appItem];
             if(objectOfApp.selectedDoctor === doctorLogin) {
-                const applicationItem = document.createElement('div');
-                const appNameOfUser = document.createElement('h2');
-                const appSurnameOfUser = document.createElement('h2');
-                const appAddressOfUser = document.createElement('h2');
-                const dateOfBirthOfUser = document.createElement('h2');
-                const healthComplaintsOfUser = document.createElement('p');
-                const deleteAppBtn = document.createElement('button');
-                deleteAppBtn.onclick = function() {
-                    remove(ref(db, 'appointments/' + appItem));
+                if(!objectOfApp.closed) {
+                    const applicationItem = document.createElement('div');
+                    const appNameOfUser = document.createElement('h2');
+                    const appSurnameOfUser = document.createElement('h2');
+                    const appAddressOfUser = document.createElement('h2');
+                    const dateOfBirthOfUser = document.createElement('h2');
+                    const dateOfAppointment = document.createElement('h2');
+                    const healthComplaintsOfUser = document.createElement('p');
+                    const finishReceptionBtn = document.createElement('button');
+                    appNameOfUser.innerHTML = 'Имя: ' + objectOfApp.name;
+                    appSurnameOfUser.innerHTML = 'Фамилия: ' + objectOfApp.surname;
+                    appAddressOfUser.innerHTML = 'Адресс: ' + objectOfApp.userAddress;
+                    healthComplaintsOfUser.innerHTML = 'Жалобы: ' + objectOfApp.healthComplaints;
+                    dateOfBirthOfUser.innerHTML = 'Дата рождения: ' + objectOfApp.dateOfBirth;
+                    dateOfAppointment.innerHTML = 'Дата записи: ' + objectOfApp.selectedTime;
+                    finishReceptionBtn.innerHTML = 'Закрыть запись';
+                    healthComplaintsOfUser.setAttribute('class', 'health-complaints-for-user');
+                    applicationItem.setAttribute('class', 'application-item');
+                    finishReceptionBtn.setAttribute('class', 'finish-reception-btn');
+                    finishReceptionBtn.onclick = function() {
+                        console.log('asd');
+                        objectOfApp.closed = true;
+                        objectOfApp.closedTime = new Date().getHours() + ':' + new Date().getMinutes();
+                        update(ref(db, 'appointments/' + appItem), objectOfApp);
+                    }
+                    applicationItem.appendChild(appNameOfUser);
+                    applicationItem.appendChild(appSurnameOfUser);
+                    applicationItem.appendChild(appAddressOfUser);
+                    applicationItem.appendChild(dateOfBirthOfUser);
+                    applicationItem.appendChild(dateOfAppointment);
+                    applicationItem.appendChild(healthComplaintsOfUser);
+                    applicationItem.appendChild(finishReceptionBtn);
+                    applicationsForDoctorsActive.appendChild(applicationItem);
                 }
-                deleteAppBtn.innerHTML = 'Удалить запись';
-                appNameOfUser.innerHTML = 'Имя: ' + objectOfApp.name;
-                appSurnameOfUser.innerHTML = 'Фамилия: ' + objectOfApp.surname;
-                appAddressOfUser.innerHTML = 'Адресс: ' + objectOfApp.userAddress;
-                healthComplaintsOfUser.innerHTML = 'Жалобы: ' + objectOfApp.healthComplaints;
-                dateOfBirthOfUser.innerHTML = 'Дата рождения: ' + objectOfApp.dateOfBirth;
-                healthComplaintsOfUser.setAttribute('class', 'health-complaints-for-user');
-                applicationItem.setAttribute('class', 'application-item');
-                deleteAppBtn.setAttribute('class', 'delete-app-btn');
-                dateOfBirthOfUser.setAttribute('class', 'date-of-birth-of-user');
-                applicationItem.appendChild(appNameOfUser);
-                applicationItem.appendChild(appSurnameOfUser);
-                applicationItem.appendChild(appAddressOfUser);
-                applicationItem.appendChild(dateOfBirthOfUser);
-                applicationItem.appendChild(healthComplaintsOfUser);
-                applicationItem.appendChild(deleteAppBtn);
-                applicationsForDoctors.appendChild(applicationItem);
+                else {
+                    const applicationItem = document.createElement('div');
+                    const appNameOfUser = document.createElement('h2');
+                    const appSurnameOfUser = document.createElement('h2');
+                    const appAddressOfUser = document.createElement('h2');
+                    const dateOfBirthOfUser = document.createElement('h2');
+                    const dateOfAppointment = document.createElement('h2');
+                    const dateOfClose = document.createElement('h2');
+                    const healthComplaintsOfUser = document.createElement('p');
+                    appNameOfUser.innerHTML = 'Имя: ' + objectOfApp.name;
+                    appSurnameOfUser.innerHTML = 'Фамилия: ' + objectOfApp.surname;
+                    appAddressOfUser.innerHTML = 'Адресс: ' + objectOfApp.userAddress;
+                    healthComplaintsOfUser.innerHTML = 'Жалобы: ' + objectOfApp.healthComplaints;
+                    dateOfBirthOfUser.innerHTML = 'Дата рождения: ' + objectOfApp.dateOfBirth;
+                    dateOfAppointment.innerHTML = 'Время записи: ' + objectOfApp.selectedTime;
+                    dateOfClose.innerHTML = 'Время закрытия: ' + objectOfApp.closedTime;
+                    healthComplaintsOfUser.setAttribute('class', 'health-complaints-for-user');
+                    applicationItem.setAttribute('class', 'application-item');
+                    applicationItem.appendChild(appNameOfUser);
+                    applicationItem.appendChild(appSurnameOfUser);
+                    applicationItem.appendChild(appAddressOfUser);
+                    applicationItem.appendChild(dateOfBirthOfUser);
+                    applicationItem.appendChild(dateOfAppointment);
+                    applicationItem.appendChild(dateOfClose);
+                    applicationItem.appendChild(healthComplaintsOfUser);
+                    applicationsForDoctorsInActive.appendChild(applicationItem);
+                }
             }
         }
     })
