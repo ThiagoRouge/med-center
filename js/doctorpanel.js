@@ -99,6 +99,7 @@ function showListOfApplications(doctorLogin) {
                         objectOfApp.closed = true;
                         objectOfApp.closedTime = new Date().getHours() + ':' + new Date().getMinutes();
                         update(ref(db, 'appointments/' + appItem), objectOfApp);
+                        set(ref(db, 'availabletimes/' + objectOfApp.selectedTime), true);
                     }
                     applicationItem.appendChild(appNameOfUser);
                     applicationItem.appendChild(appSurnameOfUser);

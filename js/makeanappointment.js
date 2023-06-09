@@ -39,7 +39,12 @@ const availableTimes = document.querySelector('.available-times');
 makeAppointmentBtn.onclick = async function(e) {
     e.preventDefault();
     const selectedTime = document.querySelector('input[name="times"]:checked');
-    if(nameInp.value.length != 0 && surnameInp.value.length != 0 && healthComplaints.value.length > 6 && userAddress.value.length > 6 && selectedTime != null) {
+    const currentDate = new Date();
+    const currentMinutes = (currentDate.getMinutes() < 10) ? '0' + currentDate.getMinutes() : currentDate.getMinutes();
+    const currentTime = new Date().getHours() + '.' + currentMinutes;
+    console.log(selectedTime.value.split(':').join('.'))
+    console.log(currentTime);
+    if(nameInp.value.length != 0 && surnameInp.value.length != 0 && healthComplaints.value.length > 6 && userAddress.value.length > 6 && selectedTime != null && Number(selectedTime.value.split(':').join('.')) > Number(currentTime)) {
         e.target.disabled = true;
         await push(ref(db, "appointments"), {
             name: nameInp.value,
