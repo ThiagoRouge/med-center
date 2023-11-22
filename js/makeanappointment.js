@@ -3,13 +3,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebas
 import { getDatabase, ref, set, child, update, remove, onValue, get, push } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDn6uyQDwQNXtKQdOe0YqwZoQHTiMAI2-k",
-    authDomain: "med-center-65eaf.firebaseapp.com",
-    databaseURL: "https://med-center-65eaf-default-rtdb.firebaseio.com",
-    projectId: "med-center-65eaf",
-    storageBucket: "med-center-65eaf.appspot.com",
-    messagingSenderId: "902696139474",
-    appId: "1:902696139474:web:faca781b678748b20fcb0b"
+    apiKey: "AIzaSyAp3Y9SmFrdx9_VqnkWPLby3ImTy1f0Yd8",
+    authDomain: "pears-8b047.firebaseapp.com",
+    databaseURL: "https://pears-8b047-default-rtdb.firebaseio.com",
+    projectId: "pears-8b047",
+    storageBucket: "pears-8b047.appspot.com",
+    messagingSenderId: "414651510908",
+    appId: "1:414651510908:web:73fa0d1b41b7af5d4a99f9",
+    measurementId: "G-C6GE046VH9"
 };
 
 initializeApp(firebaseConfig);
@@ -38,6 +39,7 @@ const availableTimes = document.querySelector('.available-times');
 
 makeAppointmentBtn.onclick = async function(e) {
     e.preventDefault();
+    console.log(await get(ref(db, 'doctors/')));
     const selectedTime = document.querySelector('input[name="times"]:checked');
     const currentDate = new Date();
     const currentMinutes = (currentDate.getMinutes() < 10) ? '0' + currentDate.getMinutes() : currentDate.getMinutes();
@@ -102,7 +104,7 @@ signAsDoctorBtn.onclick = function() {
 
 // auth doctor sys
 
-function authDoctor(username, password) {
+async function authDoctor(username, password) {
     return get(ref(db, 'doctors/')).then((snap) => {
         for(let doctor in snap.val()) {
             if(snap.val()[doctor].username === username && snap.val()[doctor].password === password) {
